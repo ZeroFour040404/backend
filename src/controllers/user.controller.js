@@ -29,4 +29,29 @@ const registerUser = async (request, response) => {
     }
 }
 
-export { registerUser };
+const loginUser = async (request, response) => {
+    try{
+        const { email, password } = request.body;
+        const user = await User.findOne({
+            email: email.toLowerCase(),
+        });
+
+        if(!user){
+            return response.status(404).json({ message: "User not found" });
+        }
+
+        const isMatched = await user.comparePassword(password);
+        if(!isMatched){
+            return response.status(400).json({ message: "Incorrect password" })
+        }
+
+        response.status(200).json({ 
+            message: "User authenticated" ,
+            user: { id: user._id, email: user.email, username: user.username, }
+        })
+    }catch(error){
+        response.status(500).json({ message: "Internal server error" })
+    }
+}
+
+export { registerUser, loginUser };
