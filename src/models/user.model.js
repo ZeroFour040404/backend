@@ -36,10 +36,10 @@ userSchema.pre("save", async function(){
     if(!this.isModified("password")){
         return;
     }
-    this.password = await bcrypt.hash(this.password, 16);
+    this.password = await bcrypt.hash(this.password, 12);
 });
 
-userSchema.methods.comparePassword = function (password){
+userSchema.methods.comparePassword = async function(password){
     return bcrypt.compare(password, this.password);
 }
 
