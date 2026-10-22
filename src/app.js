@@ -13,4 +13,8 @@ import subjectRouter from "./routes/subject.route.js";
 
 app.use("/api/users", subjectRouter);
 
+import taskRouter from './routes/task.route.js';
+
+app.use("/api/users/", taskRouter);
+
 export default app;

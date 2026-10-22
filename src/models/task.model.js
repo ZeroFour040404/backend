@@ -23,9 +23,25 @@ const taskSchema = new Schema(
             maxLength: 12
         },
 
+        activityType: {
+            type: String,
+            required: true,
+            default: "actvity"
+        },
+
+        description: {
+            type: String,
+            default: ""
+        },
+
         dueDate: {
             type: Date,
             required: true
+        },
+
+        status: {
+            type: String,
+            default: "unfinished",
         }
     },
     {

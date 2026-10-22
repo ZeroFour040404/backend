@@ -18,6 +18,11 @@ const subjectSchema = new Schema(
         code: {
             type: String,
             default: ""
+        },
+
+        description: {
+            type: String,
+            default: "",
         }
     },
     {
